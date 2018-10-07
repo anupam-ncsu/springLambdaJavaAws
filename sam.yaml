@@ -6,9 +6,9 @@ Resources:
   LambdaSpringBootFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.anupam.springlambda.StreamLambdaHandler::handleRequest
+      Handler: com.anupam.springlambda.LambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: target/LambdaSpringBootJavaApp.jar
+      CodeUri: target/LambdaSpringBootJava-0.0.1-SNAPSHOT.jar
       MemorySize: 1512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 60
@@ -22,6 +22,6 @@ Resources:
 Outputs:
   LambdaSpringBootApi:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/languages'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/getcolor'
     Export:
-      Name: LambdaSpringBootApi
+      Name: LambdaSpringBootJavaApp

@@ -10,12 +10,14 @@ import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
-public class StreamLambdaHandler implements RequestStreamHandler {
+public class LambdaHandler implements RequestStreamHandler {
+	
     private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+    
     static {
         try {
-            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(Application.class,"lambda");
-            //handler.activateSpringProfiles("lambda");
+            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(Application.class);
+            handler.activateSpringProfiles("lambda");
         } catch (ContainerInitializationException e) {
             // if we fail here. We re-throw the exception to force another cold start
             e.printStackTrace();
